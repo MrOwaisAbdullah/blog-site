@@ -20,6 +20,7 @@ const BlogCards = ({ post }: { post: PostCard }) => {
           {post.title}
         </h2>
         <p className="max-sm:text-xs text-sm xl:text-base 2xl:text-lg">
+          {/* Mapping through the categories and joining them with a comma */}
           {post.categories.map((category) => category.title).join(", ")}
         </p>
         <div className="flex flex-wrap gap-3 sm:gap-5  mt-2 justify-between items-end">
@@ -27,6 +28,7 @@ const BlogCards = ({ post }: { post: PostCard }) => {
             <div className="flex flex-col gap-1">
               <p className="">Publication Date</p>
               <p className="text-heading">
+                {/* Formatting the date */}
                 {new Date(post.publishedAt).toLocaleDateString("en-US", {
                   year: "numeric",
                   month: "long",
@@ -38,7 +40,8 @@ const BlogCards = ({ post }: { post: PostCard }) => {
               <p className="text-heading">{post.author.name}</p>
             </div>
           </div>
-          <Link href={``}>
+          {/* Dynamically adding the slug in Read More Button */}
+          <Link href={`/blog/${post.slug.current}`}>
             <button className="group border-border border-2 rounded-lg py-2 px-4 flex gap-3 sm:mt-0 mt-2">
               Read More{" "}
               <ArrowRight className="text-primary group-hover:-rotate-45 duration-200 " />
