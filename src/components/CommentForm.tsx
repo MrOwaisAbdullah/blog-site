@@ -62,14 +62,14 @@ const CommentForm: React.FC<Props> = ({ slug, onCommentAdded }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="grid grid-cols-1 lg:grid-cols-2 mb-10 gap-3">
+    <form onSubmit={handleSubmit} className="grid grid-cols-2 mb-10 gap-3">
       <input
         type="text"
         name="name"
         value={formData.name}
         onChange={handleChange}
         placeholder="Enter your name"
-        className="w-full rounded my-input bg-background border-border shadow-inner shadow-zinc-800 border-2 p-2 focus:ring-2 focus:ring-primary"
+        className="rounded my-input col-span-2 lg:col-span-1 bg-background border-border shadow-inner shadow-zinc-800 border-2 p-2 focus:ring-2 focus:ring-primary"
         required
       />
       <input
@@ -78,7 +78,7 @@ const CommentForm: React.FC<Props> = ({ slug, onCommentAdded }) => {
         value={formData.email}
         onChange={handleChange}
         placeholder="Your email address"
-        className="w-full rounded my-input bg-background border-border shadow-inner shadow-zinc-800 border-2 p-2 focus:ring-2 focus:ring-primary"
+        className="rounded my-input col-span-2 lg:col-span-1 bg-background border-border shadow-inner shadow-zinc-800 border-2 p-2 focus:ring-2 focus:ring-primary"
         required
       />
       <textarea
@@ -86,7 +86,7 @@ const CommentForm: React.FC<Props> = ({ slug, onCommentAdded }) => {
         value={formData.comment}
         onChange={handleChange}
         placeholder="Share your thoughts or ask a question..."
-        className="w-full rounded my-input col-span-2 bg-background border-border shadow-inner placeholder: shadow-zinc-800 border-2 p-2 focus:ring-2 focus:ring-primary"
+        className="rounded my-input col-span-2 bg-background border-border shadow-inner placeholder: shadow-zinc-800 border-2 p-2 focus:ring-2 focus:ring-primary"
         rows={4}
         required
       />
