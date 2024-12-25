@@ -20,9 +20,9 @@ const LatestBlog = async () => {
         const blogs: PostCard = await client.fetch(query);
 
   return (
-    <div className='flex flex-col md:flex-row gap-12 px-2 py-16 '>
-        <Image className='md:w-2/5 rounded-lg hover:scale-105 duration-300 ease-in-out' src={urlFor(blogs.mainImage).url()} alt={blogs.title} width={400} height={250}/>
-        <div className='md:w-3/5 flex flex-col gap-4 pt-5'>
+    <div className='flex flex-col justify-center lg:flex-row gap-12 mx-auto px-2 py-16 '>
+        <Image className='w-full lg:w-2/5  rounded-lg hover:scale-105 duration-300 ease-in-out' src={urlFor(blogs.mainImage).url()} alt={blogs.title} width={400} height={250}/>
+        <div className='w-full lg:w-3/5 flex flex-col gap-4 pt-5'>
             <h2 className='font-semibold text-xl xl:text-2xl 2xl:text-3xl text-heading'>{blogs.title}</h2>
             <p className='xl:text-lg 2xl:text-xl'>{blogs.summary}</p>
             <div className='flex flex-wrap sm:flex-nowrap gap-4 sm:gap-10 max-sm:text-xs text-sm xl:text-base 2xl:text-lg'>
