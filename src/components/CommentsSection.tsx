@@ -7,6 +7,8 @@ interface Props {
   slug: string;
 }
 
+export const revalidate = 10;
+
 const CommentsSection: React.FC<Props> = ({ slug }) => {
   const [comments, setComments] = useState<BlogComment[]>([]);
   const [loading, setLoading] = useState(false);

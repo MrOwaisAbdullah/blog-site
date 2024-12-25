@@ -5,6 +5,18 @@ import { PortableText } from "next-sanity";
 import { CustomComponent } from "@/components/CustomComponent";
 import CommentsSection from "@/components/CommentsSection";
 
+
+export async function generateStaticParams(){
+  const query = `*[_type == "post"]{
+    "slug":slug.current
+  }`
+
+  const slugs = await client.fetch(query);
+  const slugRoutes: string[] = slugs.map((slug: { slug: string }) => (slug.slug));
+  console.log(slugRoutes)
+  return slugRoutes.map((slug: string) => ({slug}));
+};
+
 async function Page({ params: { slug } }: { params: { slug: string } }) {
   const query = `*[_type == "post" && slug.current == "${slug}"]{
   title,

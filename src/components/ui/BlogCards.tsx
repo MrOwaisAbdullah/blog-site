@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react";
 import { urlFor } from "@/sanity/lib/image";
 
 const BlogCards = ({ post }: { post: PostCard }) => {
-  console.log(post);
   return (
     <div className="flex flex-col gap-4 p-2 hover:scale-105 duration-300 ease-in-out shadow-lg border border-border rounded-lg">
       <Image

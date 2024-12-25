@@ -31,8 +31,6 @@ const CommentForm: React.FC<Props> = ({ slug, onCommentAdded }) => {
   
     // Combining form data with slug
     const payload = { ...formData, slug }; 
-    // Printing the data being sent to the server
-    console.log('Submitting payload:', payload);
   
     try {
       const res = await fetch('/api/comments', {
@@ -70,8 +68,8 @@ const CommentForm: React.FC<Props> = ({ slug, onCommentAdded }) => {
         name="name"
         value={formData.name}
         onChange={handleChange}
-        placeholder="Your Name"
-        className="w-full rounded bg-background border-border shadow-inner shadow-zinc-800 border-2 p-2 focus:ring-2 focus:ring-blue-500 hover:ring-1 hover:ring-primary"
+        placeholder="Enter your name"
+        className="w-full rounded my-input bg-background border-border shadow-inner shadow-zinc-800 border-2 p-2 focus:ring-2 focus:ring-primary"
         required
       />
       <input
@@ -79,16 +77,16 @@ const CommentForm: React.FC<Props> = ({ slug, onCommentAdded }) => {
         name="email"
         value={formData.email}
         onChange={handleChange}
-        placeholder="Your Email"
-        className="w-full rounded bg-background border-border shadow-inner shadow-zinc-800 border-2 p-2 focus:ring-2 focus:ring-blue-500 hover:ring-1 hover:ring-primary"
+        placeholder="Your email address"
+        className="w-full rounded my-input bg-background border-border shadow-inner shadow-zinc-800 border-2 p-2 focus:ring-2 focus:ring-primary"
         required
       />
       <textarea
         name="comment"
         value={formData.comment}
         onChange={handleChange}
-        placeholder="Your Comment"
-        className="w-full rounded lg:col-span-2 bg-background border-border shadow-inner shadow-zinc-800 border-2 p-2 focus:ring-2 focus:ring-blue-500 hover:ring-1 hover:ring-primary"
+        placeholder="Share your thoughts or ask a question..."
+        className="w-full rounded my-input col-span-2 bg-background border-border shadow-inner placeholder: shadow-zinc-800 border-2 p-2 focus:ring-2 focus:ring-primary"
         rows={4}
         required
       />

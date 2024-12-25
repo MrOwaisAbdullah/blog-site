@@ -7,8 +7,13 @@
     @apply bg-background text-text;
   };
 }
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+  .my-input::placeholder {
+    @apply text-gray-500;
+  }
 }
+

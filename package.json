@@ -19,6 +19,7 @@
     "react": "^18",
     "react-dom": "^18",
     "sanity": "^3.68.3",
+    "sharp": "^0.33.5",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {
