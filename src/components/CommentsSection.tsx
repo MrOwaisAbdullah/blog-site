@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import CommentForm from './CommentForm';
+import { Clock, User } from 'lucide-react';
 
 interface Props {
   slug: string;
@@ -69,11 +70,11 @@ const CommentsSection: React.FC<Props> = ({ slug }) => {
         <p className="mx-10 text-gray-500">No comments yet. Be the first to comment!</p>
       )}
       {/* Display comments */}
-      <ul>
+      <ul className='gap-3'>
         {comments.map((comment) => (
-          <li key={comment._id} className="border-b border-zinc-700 py-5 mx-10">
-            <p className="font-semibold text-heading capitalize">{comment.name} <span className="text-sm font-light text-gray-500 ml-2">
-        {timeAgo(comment._createdAt)} </span></p>
+          <li key={comment._id} className="mb-8 p-3 shadow-lg shadow-white/5 rounded-lg  bg-border py-5 mx-10">
+            <p className="flex font-semibold text-gray-100 items-center gap-1 capitalize"><User className='w-7 h-7' />{comment.name} <span className="flex text-sm font-light items-center justify-center gap-1 text-gray-500 ml-3">
+            <Clock className='w-4 h-4'/> {timeAgo(comment._createdAt)} </span></p>
             <p className='ml-3 my-2'>{comment.comment}</p>
           </li>
         ))}
