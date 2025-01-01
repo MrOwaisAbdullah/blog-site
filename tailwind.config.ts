@@ -14,7 +14,7 @@ const config: Config = {
         text2: "#b5b5b7",
         heading: "#FFFFFF",
         border: "#262626",
-        background: "#1E1E1E",
+        background: "#141414",
         background2: "#191919",
       },
     },
