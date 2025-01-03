@@ -11,8 +11,8 @@ const BlogCards = ({ post }: { post: PostCard }) => {
         className="rounded-lg w-full"
         src={urlFor(post.mainImage).url() as string}
         alt={post.title}
-        width={400}
-        height={250}
+        width={300}
+        height={150}
       />
       <div className="flex flex-col gap-2 p-3">
         <h2 className="font-semibold text-sm xl:text-base 2xl:text-xl text-heading">

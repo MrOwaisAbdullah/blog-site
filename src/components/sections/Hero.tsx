@@ -15,9 +15,9 @@ const Hero = () => {
             <p className='text-sm md:text-lg'>Welcome to the epicenter of AI innovation. FutureTech AI News is your passport to a world where machines think, learn, and reshape the future. Join us on this visionary expedition into the heart of AI.</p>
         </div>
         <div className='relative w-full md:w-2/5 flex bg-cover md:border-l-4 border-t-4 md:border-t-0 border-border bg-center'>
-            <Image className='' src={hero} alt='Hero Abstract' width={500} height={500}></Image>
+            <Image className='' src={hero} alt='Hero Abstract' priority width={300} height={300}></Image>
             <div className='flex flex-col absolute bottom-10 left-5 gap-3'>
-                <Image src={author} alt={"Authors"} width={150} height={50}></Image>
+                <Image src={author} alt={"Authors"} width={100} height={50}></Image>
                 <h3>Explore 100+ resources</h3>
                 <Link href={"#"}>
             <button className="group border-border border-2 rounded-lg py-2 px-4 flex gap-3 sm:mt-0 mt-2">
