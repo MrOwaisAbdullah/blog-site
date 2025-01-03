@@ -50,7 +50,7 @@ async function Page({ params: { slug } }: { params: { slug: string } }) {
       {/* Blog Section */}
       <div className="flex flex-col lg:flex-row-reverse">
         {/* Blog Sidebar */}
-        <div className="flex flex-col lg:w-1/3 items-center border-l-4 border-border py-14 sticky right-0">
+        <div className="flex flex-col lg:w-1/3 items-center lg:border-l-4 border-border py-14 sticky right-0">
           <div className="grid grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 lg:gap-y-8 gap-x-20 mx-auto">
             <div className="flex flex-col border-border">
               <h1 className="text-sm xl:text-base 2xl:text-lg mb-1">
