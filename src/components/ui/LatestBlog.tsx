@@ -21,7 +21,7 @@ const LatestBlog = async () => {
 
   return (
     <div className='flex flex-col justify-center lg:flex-row gap-12 mx-auto px-2 py-16 '>
-        <Image className='w-full lg:w-2/5  rounded-lg hover:scale-105 duration-300 ease-in-out' src={urlFor(blogs.mainImage).url()} alt={blogs.title} width={400} height={250}/>
+        <Image className='w-full lg:w-2/5  rounded-lg hover:scale-105 duration-300 ease-in-out' src={urlFor(blogs.mainImage).url()} alt={blogs.title} width={400} height={200}/>
         <div className='w-full lg:w-3/5 flex flex-col gap-4 pt-5'>
             <h2 className='font-semibold text-xl xl:text-2xl 2xl:text-3xl text-heading'>{blogs.title}</h2>
             <p className='xl:text-lg 2xl:text-xl'>{blogs.summary}</p>
