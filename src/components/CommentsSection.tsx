@@ -61,18 +61,18 @@ const CommentsSection: React.FC<Props> = ({ slug }) => {
   return (
     <div className='border-t-2 pt-10 border-border'>
       <h3 className="text-xl text-heading font-bold mb-5 mx-10">Comments</h3>
-      <div className='mx-10'><CommentForm slug={slug} onCommentAdded={addComment} /></div>
+      <div className='mx-5'><CommentForm slug={slug} onCommentAdded={addComment} /></div>
       {/* Loading comments */}
       {loading && <p className='mx-10'>Loading comments...</p>}
 
       {/* If no comments */}
       {!loading && comments.length === 0 && (
-        <p className="mx-10 text-gray-500">No comments yet. Be the first to comment!</p>
+        <p className="mx-5 text-gray-500">No comments yet. Be the first to comment!</p>
       )}
       {/* Display comments */}
       <ul className='gap-3'>
         {comments.map((comment) => (
-          <li key={comment._id} className="mb-8 p-3 shadow-lg shadow-white/5 rounded-lg  bg-border py-5 mx-10">
+          <li key={comment._id} className="mb-8 p-3 shadow-lg shadow-white/5 rounded-lg  bg-border py-5 mx-5">
             <p className="flex font-semibold text-gray-100 items-center gap-1 capitalize"><User className='w-7 h-7' />{comment.name} <span className="flex text-sm font-light items-center justify-center gap-1 text-gray-500 ml-3">
             <Clock className='w-4 h-4'/> {timeAgo(comment._createdAt)} </span></p>
             <p className='ml-3 my-2'>{comment.comment}</p>
