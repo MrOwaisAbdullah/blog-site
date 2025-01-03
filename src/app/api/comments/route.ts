@@ -1,5 +1,8 @@
 import { NextResponse } from 'next/server';
 import { client } from '@/sanity/lib/client';
+import { z } from "zod";
+import { commentSchema } from "@/app/schemas/commentSchema";
+import DOMPurify from "isomorphic-dompurify";
 
 export async function GET(req: Request) {
   try {
@@ -42,41 +45,42 @@ export async function GET(req: Request) {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    console.log('Received payload:', body);
+    
+    // Validate and sanitize the input using Zod
+    const validatedData = commentSchema.parse({
+      ...body,
+      comment: DOMPurify.sanitize(body.comment),
+    });
 
-    const { name, email, comment, slug } = body;
-
-    // Fetching the post to ensure the slug exists
+    // Ensure the post exists
     const post = await client.fetch(
       `*[_type == "post" && slug.current == $slug][0]`,
-      { slug }
+      { slug: validatedData.slug }
     );
 
     if (!post) {
-      console.error(`No post found for slug: ${slug}`);
       return NextResponse.json(
-        { error: `Post not found for slug: ${slug}` },
+        { error: `Post not found for slug: ${validatedData.slug}` },
         { status: 404 }
       );
     }
 
     // Creating the comment
     const newComment = await client.create({
-      _type: 'comment',
-      name,
-      email,
-      comment,
-      post: {
-        _type: 'reference',
-        _ref: post._id,
-      },
+      _type: "comment",
+      name: validatedData.name,
+      email: validatedData.email,
+      comment: validatedData.comment,
+      post: { _type: "reference", _ref: post._id },
     });
 
     console.log('Comment created successfully:', newComment);
 
     return NextResponse.json({ message: 'Comment submitted', comment: newComment });
-  } catch (error) {
-    console.error('Error in API route:', error);
+  } catch (err) {
+    if (err instanceof z.ZodError) {
+      return NextResponse.json({ error: err.errors[0].message }, { status: 400 });
+    }
     return NextResponse.json(
       { error: 'Error submitting comment' },
       { status: 500 }

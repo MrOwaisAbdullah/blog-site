@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
+import { z } from "zod";
+import { commentSchema } from "@/app/schemas/commentSchema";	
 
 interface Props {
   slug: string;
@@ -29,14 +31,15 @@ const CommentForm: React.FC<Props> = ({ slug, onCommentAdded }) => {
     setLoading(true);
     setError(null);
   
-    // Combining form data with slug
-    const payload = { ...formData, slug }; 
-  
     try {
-      const res = await fetch('/api/comments', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+      // Combine form data with the slug and validate it
+      const validatedData = commentSchema.parse({ ...formData, slug });
+
+      // Send validated data to the API
+      const res = await fetch("/api/comments", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(validatedData),
       });
   
       if (!res.ok) {
@@ -53,9 +56,12 @@ const CommentForm: React.FC<Props> = ({ slug, onCommentAdded }) => {
       onCommentAdded(data.comment); 
       // Resetting the the form after submitting the comment
       setFormData({ name: '', email: '', comment: '' }); 
-    } catch (error) {
-      console.error('Error submitting comment:', error);
-      setError('Error submitting comment. Please try again.');
+    } catch (err) {
+      if (err instanceof z.ZodError) {
+        setError(err.errors[0].message); // Show the first validation error
+      } else {
+        setError("Error submitting comment. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
