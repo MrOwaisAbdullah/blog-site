@@ -34,7 +34,7 @@ const Header = () => {
                 Home
               </li>
             </Link>
-            <Link href={"/"}>
+            <Link href={"/news"}>
               <li className="hover:bg-background border-background2 p-2 rounded-lg hover:border-border border">
                 News
               </li>
@@ -75,7 +75,7 @@ const Header = () => {
                 Home
               </li>
             </Link>
-            <Link href={"/"} onClick={closeDrawer}>
+            <Link href={"/news"} onClick={closeDrawer}>
               <li className="hover:bg-background2 border-background p-2 rounded-lg hover:border-border border">
                 News
               </li>

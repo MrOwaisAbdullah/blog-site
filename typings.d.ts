@@ -22,6 +22,7 @@ interface PostCard {
 
 interface BlogSectionProps {
   limit?: number; 
+  excludeLatest?: boolean;
 }
 
 interface BlogComment {

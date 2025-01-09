@@ -13,7 +13,7 @@ export default async function Home() {
       <LatestBlog />
       </div>
       <h2 className={`${kumbhSans.className} tracking-widest font-bold text-3xl xl:text-5xl 2xl:text-6xl text-heading text-center uppercase py-5 my-5 mt-10`}>More Blogs</h2>
-      <BlogSection />
+      <BlogSection excludeLatest={true}/>
     </div>
   );
 }
