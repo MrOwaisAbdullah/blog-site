@@ -36,8 +36,8 @@ async function Page({ params: { slug } }: { params: { slug: string } }) {
           className="flex h-[400px] 2xl:h-[700px] w-screen object-cover items-center justify-center"
           src={urlFor(blog.mainImage).url() as string}
           alt={blog.title}
-          width={600}
-          height={300}
+          width={800}
+          height={400}
         />
         <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/90 from-15% via-black/50 to-transparent">
           <h1
