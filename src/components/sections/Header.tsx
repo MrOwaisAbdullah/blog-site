@@ -54,7 +54,7 @@ const Header = () => {
           href={"https://www.linkedin.com/in/mrowaisabdullah/"}
           target="_blank"
         >
-          <button className="bg-primary hover:bg-background2 hover:border-2 border-border hover:text-primary font-medium text-background px-3 py-2 rounded">
+          <button className="bg-primary hover:bg-background2 hover:border-border border-2 border-background2 hover:text-primary font-medium text-background px-3 py-2 rounded">
             Contact Me
           </button>
         </Link>
@@ -96,7 +96,7 @@ const Header = () => {
           target="_blank"
           onClick={closeDrawer}
         >
-          <button className="bg-primary hover:bg-background2 hover:border-2 border-border hover:text-primary font-medium text-background px-3 py-2 rounded">
+          <button className="bg-primary hover:bg-background2 hover:border-border border-2 border-background2 hover:text-primary font-medium text-background px-3 py-2 rounded">
             Contact Me
           </button>
         </Link>
