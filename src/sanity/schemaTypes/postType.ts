@@ -24,29 +24,6 @@ export const postType = defineType({
       to: {type: 'author'},
     }),
     defineField({
-      name: 'mainImage',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: 'alt',
-          type: 'string',
-          title: 'Alternative text',
-        }
-      ]
-    }),
-    defineField({
-      name: 'categories',
-      type: 'array',
-      of: [defineArrayMember({type: 'reference', to: {type: 'category'}})],
-    }),
-    defineField({
-      name: 'publishedAt',
-      type: 'datetime',
-    }),
-    defineField({
       name: 'summary',
       type: 'text',
       validation: Rule => Rule.max(300).warning('Short summaries are usually better'),
@@ -55,7 +32,30 @@ export const postType = defineType({
       name: 'content',
       type: 'blockContent',
     }),
+    defineField({
+      name: 'faqs',
+      title: 'FAQs',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          fields: [
+            {
+              name: 'question',
+              type: 'string',
+              title: 'Question',
+            },
+            {
+              name: 'answer',
+              type: 'text',
+              title: 'Answer',
+            },
+          ],
+        }),
+      ],
+    }),
   ],
+  
   preview: {
     select: {
       title: 'title',

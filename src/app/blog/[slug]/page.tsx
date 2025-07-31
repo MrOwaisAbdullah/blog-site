@@ -4,30 +4,35 @@ import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
 import { CustomComponent } from "@/components/CustomComponent";
 import CommentsSection from "@/components/CommentsSection";
+import SchemaMarkup from "@/components/SchemaMarkup";
 
-
-export async function generateStaticParams(){
+export async function generateStaticParams() {
   const query = `*[_type == "post"]{
     "slug":slug.current
-  }`
+  }`;
 
   const slugs = await client.fetch(query);
-  const slugRoutes: string[] = slugs.map((slug: { slug: string }) => (slug.slug));
-  return slugRoutes.map((slug: string) => ({slug}));
-};
+  const slugRoutes: string[] = slugs.map((slug: { slug: string }) => slug.slug);
+  return slugRoutes.map((slug: string) => ({ slug }));
+}
 
 async function Page({ params: { slug } }: { params: { slug: string } }) {
   const query = `*[_type == "post" && slug.current == "${slug}"]{
-  title,
-  mainImage,
-  summary,
-  content,
-  publishedAt,
-  author->{name},
-  categories[]->{title}
-}[0]`;
+    title,
+    mainImage,
+    summary,
+    content,
+    publishedAt,
+    author->{name},
+    categories[]->{title},
+    faqs
+  }[0]`;
 
-  const blog: PostCard = await client.fetch(query);
+  const blog: PostCard =
+    await client.fetch(query);
+
+  // Generate Schema Markup
+  <SchemaMarkup post={blog} />;
 
   return (
     <article className="flex flex-col min-h-screen mb-20 ">
@@ -82,6 +87,24 @@ async function Page({ params: { slug } }: { params: { slug: string } }) {
           <section className="text-sm xl:text-base 2xl:text-lg px-5 py-10 md:px-12">
             <PortableText value={blog.content} components={CustomComponent} />
           </section>
+          {/* FAQ Section */}
+          {blog.faqs && blog.faqs.length > 0 && (
+            <section className="mt-10 px-5 md:px-12">
+              <h2 className="text-xl 2xl:text-2xl font-bold mb-6 text-heading">
+                Frequently Asked Questions
+              </h2>
+              <div className="space-y-6">
+                {blog.faqs.map((faq, idx) => (
+                  <div key={idx} className="border-b pb-6">
+                    <h3 className="font-semibold text-lg mb-2 text-primary">
+                      Q: {faq.question}
+                    </h3>
+                    <p className="text-base text-gray-700">A: {faq.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
           {/* Comments Section */}
           <CommentsSection slug={slug} />
         </div>

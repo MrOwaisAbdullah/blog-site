@@ -18,6 +18,11 @@ interface PostCard {
   slug: {
     current: string | null;
   }
+  faqs?: {
+    question: string;
+    answer: string;
+  }[];
+  _updatedAt?: string;
 };
 
 interface BlogSectionProps {
