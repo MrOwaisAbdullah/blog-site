@@ -40,7 +40,7 @@ export function buildSchemas(post: PostCard) {
       ? {
           '@context': 'https://schema.org',
           '@type': 'FAQPage',
-          mainEntity: faqs.map((faq: any) => ({
+          mainEntity: faqs.map((faq: { question: string; answer: string }) => ({
             '@type': 'Question',
             name: faq.question,
             acceptedAnswer: {
