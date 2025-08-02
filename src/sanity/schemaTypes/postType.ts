@@ -1,70 +1,90 @@
-import {DocumentTextIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import { DocumentTextIcon } from "@sanity/icons";
+import { defineArrayMember, defineField, defineType } from "sanity";
 
 export const postType = defineType({
-  name: 'post',
-  title: 'Post',
-  type: 'document',
+  name: "post",
+  title: "Post",
+  type: "document",
   icon: DocumentTextIcon,
   fields: [
     defineField({
-      name: 'title',
-      type: 'string',
+      name: "title",
+      type: "string",
     }),
     defineField({
-      name: 'slug',
-      type: 'slug',
+      name: "slug",
+      type: "slug",
       options: {
-        source: 'title',
+        source: "title",
       },
     }),
     defineField({
-      name: 'author',
-      type: 'reference',
-      to: {type: 'author'},
+      name: "mainImage",
+      type: "image",
+      options: {
+        hotspot: true,
+      },
     }),
     defineField({
-      name: 'summary',
-      type: 'text',
-      validation: Rule => Rule.max(300).warning('Short summaries are usually better'),
+      name: "publishedAt",
+      type: "datetime",
     }),
     defineField({
-      name: 'content',
-      type: 'blockContent',
+      name: "categories",
+      type: "array",
+      of: [{ type: "reference", to: { type: "category" } }],
+      options: {
+        layout: "tags",
+      },
     }),
     defineField({
-      name: 'faqs',
-      title: 'FAQs',
-      type: 'array',
+      name: "author",
+      type: "reference",
+      to: { type: "author" },
+    }),
+    defineField({
+      name: "summary",
+      type: "text",
+      validation: (Rule) =>
+        Rule.max(300).warning("Short summaries are usually better"),
+    }),
+    defineField({
+      name: "content",
+      type: "blockContent",
+    }),
+    defineField({
+      name: "faqs",
+      title: "FAQs",
+      type: "array",
       of: [
         defineArrayMember({
-          type: 'object',
+          type: "object",
           fields: [
             {
-              name: 'question',
-              type: 'string',
-              title: 'Question',
+              name: "question",
+              type: "string",
+              title: "Question",
             },
             {
-              name: 'answer',
-              type: 'text',
-              title: 'Answer',
+              name: "answer",
+              type: "text",
+              title: "Answer",
             },
           ],
         }),
       ],
     }),
   ],
-  
+
   preview: {
     select: {
-      title: 'title',
-      author: 'author.name',
-      media: 'mainImage',
+      title: "title",
+      author: "author.name",
+      media: "mainImage",
     },
     prepare(selection) {
-      const {author} = selection
-      return {...selection, subtitle: author && `by ${author}`}
+      const { author } = selection;
+      return { ...selection, subtitle: author && `by ${author}` };
     },
   },
-})
+});

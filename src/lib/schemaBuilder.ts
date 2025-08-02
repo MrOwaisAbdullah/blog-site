@@ -1,5 +1,3 @@
-// lib/schemaBuilder.ts
-
 export function buildSchemas(post: PostCard) {
   const {
     title,
@@ -28,7 +26,7 @@ export function buildSchemas(post: PostCard) {
       name: 'Your Brand Name',
       logo: {
         '@type': 'ImageObject',
-        url: `${baseUrl}/logo.png`, // Replace with your logo
+        url: `${baseUrl}/logo.png`,
       },
     },
     datePublished: publishedAt,
